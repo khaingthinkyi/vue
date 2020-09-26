@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BMI Calculator</title>
+	<!-- CSS -->
+	<script type="text/javascript" src="css/bootstrap.min.css"></script>
+	<!-- JS -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<!-- <div class="container-fluid">
+		<div class="row">
+			<form>
+			<div class="form-group">
+			<div col-md-6> -->
+				<label>Your Height:</label>
+				<input type="number" name="feet" v-model="feet">
+				<label>Feet</label>
+				<input type="number" name="inches" v-model="inches">
+				<label>Inches</label>
+				<br><br>
+				<label>Weight:</label>
+				<input type="number" name="weight" v-model="weight">
+				<label>lb</label>
+				<br> <br>
+				<!-- <input type="number" name="bmi" v-model="bmi"> -->
+				<button v-on:click="calculate">Calculate</button>
+				<h1>Your BMI:{{bmi}}</h1>
+			<!-- </div> -->
+			<!-- <div class="col-md-6"> -->
+				<h1>BMI Categories:</h1>
+				<p v-if="bmi < 18.5" style="color: blue;">UnderWeight</p>
+				<p v-else-if="bmi >= 18.5 && bmi <= 24.9" style="color: green;">Normal weight</p>
+				<p v-else-if="bmi >= 25 && bmi <= 29.9" style="color: orange;">Overweight</p>
+				<p v-else="bmi >= 18.5" style="color: red;">Obesity</p>
+			<!-- </div>
+		</div>
+		</div>
+		</form>
+	</div> -->
+</div>
+<script type="text/javascript">
+	var app=new Vue({
+		el:"#app",
+		data:{
+			feet:'',
+			inches:'',
+			weight:'',
+			bmi:''
+		},
+		methods:{
+			calculate(){
+				var feet=parseInt(this.feet);
+				var inches=parseInt(this.inches);
+				var height=(12*feet)+inches;
+				var weight=parseInt(this.weight);
+				this.bmi=(703*(weight/(height*height))).toFixed(1);
+				/*var feet=this.feet;
+				var inches=this.inches;
+				var height=(12*feet)+inches;
+				var weight=this.weight;
+				this.bmi=(703*(weight/(height*height))).toFixed(1);*/
+			}
+		}
+	})
+</script>
+</body>
+</html>

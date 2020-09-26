@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue JS Introduction</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<h1>{{message}}</h1>
+	<button v-on:click="reverse">Reverse Text</button>
+	<br>
+	<input type="text" name="name" placeholder="Enter your name" v-model="name">
+	<p :title="titletxt">{{name}}</p> <!-- //:title is short term -->
+	<!-- <p v-bind:title="titletxt">{{name}}</p> --> <!-- //v-bind:title is long term -->
+	<img v-bind:src="photo" alt="This is staff image!">
+	<!-- //start Condition -->
+	<p v-if="exam">Exam Passed!</p>
+	<p v-else>Exam Failed!</p>
+	<p v-if="mark >50">Passed!</p>
+	<p v-else>Failed!</p>
+	<!-- //End Condition -->
+	<!-- Start Looping -->
+	<ol>
+		<li v-for="todo in todos">{{todo.text}}</li>
+	</ol>
+	<ol>
+		<li v-for="todo in filterTodos">{{todo.text}}</li>
+	</ol>
+</div>
+<script type="text/javascript">
+	var app=new Vue({ //Vue instance  (object)
+		el:"#app",
+		data:{
+			message:"Hello Vue",
+			name:"Vue In_browser",
+			titletxt:"This is a title",
+			photo:"photo/staff.jpeg",
+			exam:true,
+			mark:40,
+			todos: [
+			{ text: 'Learn JavaScript',status:false},
+			{ text: 'Learn Vue',status:false},
+			{ text: 'Build something awesome',status:true}
+			]
+		},
+		methods:{
+			reverse(){
+				this.message=this.message.split('').reverse().join('');
+			}
+		},
+		computed:{
+			filterTodos(){
+				return this.todos.filter(todo=>todo.status==false)
+			}
+		}
+	})
+</script>
+</body>
+</html>
